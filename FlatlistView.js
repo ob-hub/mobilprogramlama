@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, SafeAreaView, Text, View } from 'react-native';
 
+// ikinci commit
 const FlatlistView = (props) => {
    return (
       <SafeAreaView style={{ flex: 1 }}>
