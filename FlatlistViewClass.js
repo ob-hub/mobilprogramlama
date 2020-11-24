@@ -1,63 +1,71 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { FlatList, SafeAreaView, Text, TextInput, View } from 'react-native';
 
-// ikinci commit
-const FlatlistView = (props) => {
-   // Fonksiyonel componentte => useState
-   // Class component state = { }
+class FlatlistViewClass extends Component {
+   constructor(props) {
+      super(props);
 
-   const [flatData, setFlatData] = useState(data);
-   const [text, setText] = useState('');
+      this.state = {
+         flatData: data
+      };
+   }
 
-   const handleSearch = (value) => {
-      const yeniListe = flatData.filter((item) =>
-         item.first_name.toLowerCase().includes(value.toLowerCase())
-      );
+   handleSearch = (value) => {
+      const { flatData } = this.state;
+
+      const yeniListe = flatData.filter((item) => item.first_name.toLowerCase().includes(value.toLowerCase()));
 
       console.log('yeniListe -> ', yeniListe);
 
       if (value.length > 0) {
-         setFlatData(yeniListe);
+         this.setState({ flatData: yeniListe }); // Class componentte state değiştirme
+         // setFlatData(yeniListe); Fonksiyonel componentte state değiştirme metodu
       } else {
-         setFlatData(data);
+         this.setState({ flatData: data });
       }
    };
 
-   return (
-      <SafeAreaView style={{ flex: 1 }}>
-         <Text>Fonksiyonel Component</Text>
-         <View style={{ flex: 1, paddingTop: 50 }}>
-            <View
-               style={{
-                  height: 50,
-                  justifyContent: 'center',
-                  borderWidth: 1,
-                  marginBottom: 12
-               }}>
-               <TextInput onChangeText={(value) => handleSearch(value)} />
-            </View>
-            <FlatList
-               data={flatData}
-               keyExtractor={(item, index) => 'flatList' + index}
-               ItemSeparatorComponent={() => <View style={{ height: 1, width: '100%', backgroundColor: 'gray' }} />}
-               renderItem={({ item }, index) => {
-                  return (
-                     <Text
-                        style={{
-                           height: 50
-                        }}
-                        key={index}>
-                        {item.first_name}
-                     </Text>
-                  );
-               }}
-            />
-         </View>
-      </SafeAreaView>
-   );
-};
+   render() {
+      //herhangibir işlem yapabilirim.
 
-export default FlatlistView;
+      const { flatData } = this.state;
+
+      return (
+         <SafeAreaView style={{ flex: 1 }}>
+            <Text>Class Component</Text>
+            <View style={{ flex: 1, paddingTop: 50 }}>
+               <View
+                  style={{
+                     height: 50,
+                     justifyContent: 'center',
+                     borderWidth: 1,
+                     marginBottom: 12
+                  }}>
+                  <TextInput onChangeText={(value) => this.handleSearch(value)} />
+               </View>
+               <FlatList
+                  data={flatData}
+                  keyExtractor={(item, index) => 'flatList' + index}
+                  ItemSeparatorComponent={() => <View style={{ height: 1, width: '100%', backgroundColor: 'gray' }} />}
+                  renderItem={({ item }, index) => {
+                     return (
+                        <Text
+                           style={{
+                              height: 50
+                           }}
+                           key={index}>
+                           {item.first_name}
+                        </Text>
+                     );
+                  }}
+               />
+            </View>
+         </SafeAreaView>
+      );
+   }
+}
+
+export default FlatlistViewClass;
 
 const data = [
    {
