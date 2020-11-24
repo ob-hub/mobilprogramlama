@@ -5,9 +5,19 @@ class FlatlistViewClass extends Component {
    constructor(props) {
       super(props);
 
+      // İlk olarak burası çalışır
+
       this.state = {
          flatData: data
       };
+   }
+
+   componentDidMount () {
+      // render içerisindeki görünümler çizildikten (renderlandıktan) sonra çalışır
+   }
+
+   componentWillUnmount () {
+      // Bu sınıf kaldılırıldığında
    }
 
    handleSearch = (value) => {

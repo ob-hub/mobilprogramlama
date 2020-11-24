@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView, Text, TextInput, View } from 'react-native';
 
 // ikinci commit
@@ -6,8 +6,23 @@ const FlatlistView = (props) => {
    // Fonksiyonel componentte => useState
    // Class component state = { }
 
+   // hooks
    const [flatData, setFlatData] = useState(data);
    const [text, setText] = useState('');
+
+
+   useEffect(() => {
+      // İlk olarak burası çalışır
+
+      // render içerisindeki görünümler çizildikten (renderlandıktan) sonra çalışır
+
+      () => {
+         // Bu sınıf kaldılırıldığında
+         return false
+      }
+
+   }, [flatData])
+
 
    const handleSearch = (value) => {
       const yeniListe = flatData.filter((item) =>
