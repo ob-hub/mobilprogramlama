@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Button, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+// @link https://reactnavigation.org/docs/getting-started/
+
 function HomeScreen({ navigation, ...props }) {
    return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
