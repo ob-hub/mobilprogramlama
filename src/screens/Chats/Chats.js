@@ -1,57 +1,136 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import ChatContainer from '../../components/chats/ChatContainer';
+import { FlatList } from 'react-native';
 
 const Chats = (props) => {
-   return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-         <View style={{ flexDirection: 'row', backgroundColor: 'white', paddingHorizontal:16, paddingVertical: 12 }}>
-            {/*Avatar*/}
-            <Avatar />
-            {/*Detaylar*/}
-            <Detail />
-         </View>
-      </View>
-   );
+   const _renderItem = ({ item, index }) => {
+      return <ChatContainer avatar={item.avatar} name={item.name} description={item.description} />;
+   };
+
+   return <FlatList data={mockData} renderItem={_renderItem} />;
 };
 
 export default Chats;
 
-const Avatar = (props) => {
-   return (
-      <View style={{ flex: 0, borderRadius: 100, overflow: 'hidden',marginRight: 8}}>
-         <Image
-            style={{
-               width: 70,
-               height: 70
-            }}
-            source={{ uri: 'https://picsum.photos/200/300' }}
-         />
-      </View>
-   );
-};
-
-const Detail = (props) => {
-   return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-         <View style={{ flexDirection: 'row',marginBottom: 5 }}>
-            <Text style={{ flex: 1, fontWeight:'bold' }}>Mobil Proglama</Text>
-            <Text style={{ flex: 0, color: 'green' }}>20:18</Text>
-         </View>
-
-         <View style={{ flexDirection: 'row' }}>
-            <Text style={{ flex: 1, fontWeight: '300' }}>Merhaba herkese</Text>
-            <View
-               style={{
-                  width: 20,
-                  height: 20,
-                  backgroundColor: 'green',
-                  borderRadius: 100,
-                  justifyContent: 'center',
-                  alignItems: 'center'
-               }}>
-               <Text style={{ flex: 0, color: 'white' }}>2</Text>
-            </View>
-         </View>
-      </View>
-   );
-};
+const mockData = [
+   {
+      id: 1,
+      avatar: 'http://dummyimage.com/104x120.bmp/dddddd/000000',
+      name: 'Dion Somerville',
+      description: 'Sybila Tomasik'
+   },
+   {
+      id: 2,
+      avatar: 'http://dummyimage.com/168x112.bmp/dddddd/000000',
+      name: 'Valencia Ruddock',
+      description: 'Sergeant McTerry'
+   },
+   {
+      id: 3,
+      avatar: 'http://dummyimage.com/148x243.png/cc0000/ffffff',
+      name: 'Terrance Boner',
+      description: 'Katusha Garwill'
+   },
+   {
+      id: 4,
+      avatar: 'http://dummyimage.com/241x201.jpg/5fa2dd/ffffff',
+      name: 'Mamie Bennellick',
+      description: 'Briano Pepon'
+   },
+   {
+      id: 5,
+      avatar: 'http://dummyimage.com/203x213.png/ff4444/ffffff',
+      name: 'Hartley Kyngdon',
+      description: 'Martie Matfin'
+   },
+   {
+      id: 6,
+      avatar: 'http://dummyimage.com/157x238.png/5fa2dd/ffffff',
+      name: 'Winnah Vergo',
+      description: 'Moses Comettoi'
+   },
+   {
+      id: 7,
+      avatar: 'http://dummyimage.com/155x143.bmp/dddddd/000000',
+      name: 'Hannah Witty',
+      description: 'Athene Bedham'
+   },
+   {
+      id: 8,
+      avatar: 'http://dummyimage.com/240x245.jpg/ff4444/ffffff',
+      name: 'Tally Vail',
+      description: 'Dieter Earley'
+   },
+   {
+      id: 9,
+      avatar: 'http://dummyimage.com/100x125.jpg/cc0000/ffffff',
+      name: 'Kayle Feavyour',
+      description: 'Doloritas Stolli'
+   },
+   {
+      id: 10,
+      avatar: 'http://dummyimage.com/100x216.png/dddddd/000000',
+      name: 'Ferguson Whorall',
+      description: 'Emmett Sappson'
+   },
+   {
+      id: 11,
+      avatar: 'http://dummyimage.com/245x181.png/cc0000/ffffff',
+      name: 'Clement Redier',
+      description: 'Jackie Whate'
+   },
+   {
+      id: 12,
+      avatar: 'http://dummyimage.com/141x246.png/5fa2dd/ffffff',
+      name: 'Northrup De Andisie',
+      description: 'Genia Speedin'
+   },
+   {
+      id: 13,
+      avatar: 'http://dummyimage.com/196x137.png/dddddd/000000',
+      name: 'Bayard Eusden',
+      description: 'Shepard Damper'
+   },
+   {
+      id: 14,
+      avatar: 'http://dummyimage.com/218x205.bmp/dddddd/000000',
+      name: 'Gladys Galiero',
+      description: 'Elga Surguine'
+   },
+   {
+      id: 15,
+      avatar: 'http://dummyimage.com/163x248.bmp/5fa2dd/ffffff',
+      name: 'Tonnie Eastbury',
+      description: 'Booth Lavalle'
+   },
+   {
+      id: 16,
+      avatar: 'http://dummyimage.com/187x209.jpg/5fa2dd/ffffff',
+      name: 'Tiffie Crew',
+      description: 'Sapphire Self'
+   },
+   {
+      id: 17,
+      avatar: 'http://dummyimage.com/155x127.bmp/cc0000/ffffff',
+      name: 'Corey Gibson',
+      description: 'Cara Flasby'
+   },
+   {
+      id: 18,
+      avatar: 'http://dummyimage.com/106x229.jpg/ff4444/ffffff',
+      name: 'Prue Cotilard',
+      description: 'Lanny Bezley'
+   },
+   {
+      id: 19,
+      avatar: 'http://dummyimage.com/245x247.png/dddddd/000000',
+      name: 'Violante Selland',
+      description: 'Philippe Cory'
+   },
+   {
+      id: 20,
+      avatar: 'http://dummyimage.com/215x188.jpg/dddddd/000000',
+      name: 'Nevil Bristo',
+      description: 'Alvan Matterdace'
+   }
+];
