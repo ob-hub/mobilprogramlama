@@ -3,12 +3,13 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Avatar from './Avatar';
 import Detail from './Detail';
 import _ from 'lodash';
+import NavigationService from '../../service/NavigationService';
 
-const ChatContainer = ({ avatar, name, description, ...props }) => {
+const ChatContainer = ({ navigator, avatar, name, description, ...props }) => {
    const isMark = _.sample([false, true]);
 
    return (
-      <Pressable onPress={() => alert(name)} style={styles.container}>
+      <Pressable onPress={() => NavigationService.navigate('ChatView', { name: name })} style={styles.container}>
          <View style={styles.chatView}>
             {/*Avatar*/}
             <Avatar avatar={avatar} />

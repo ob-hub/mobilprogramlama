@@ -2,7 +2,6 @@ import { Text, View, StyleSheet } from 'react-native';
 import React from 'react';
 
 const Detail = ({ name, description, isMark, props }) => {
-   console.log(isMark);
    return (
       <View style={styles.container}>
          <View style={styles.firstContainer}>

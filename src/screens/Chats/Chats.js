@@ -4,10 +4,17 @@ import { FlatList } from 'react-native';
 
 const Chats = (props) => {
    const _renderItem = ({ item, index }) => {
-      return <ChatContainer avatar={item.avatar} name={item.name} description={item.description} />;
+      return (
+         <ChatContainer
+            navigator={props.navigator}
+            avatar={item.avatar}
+            name={item.name}
+            description={item.description}
+         />
+      );
    };
 
-   return <FlatList data={mockData} renderItem={_renderItem} />;
+   return <FlatList keyExtractor={(item, index) => item.id} data={mockData} renderItem={_renderItem} />;
 };
 
 export default Chats;
