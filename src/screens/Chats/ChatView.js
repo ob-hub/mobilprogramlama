@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import _ from 'lodash';
 import faker from 'faker';
+import SendIcon from '../../resources/icons/SendIcon';
 
 faker.locale = 'tr';
 
@@ -51,11 +52,21 @@ const ChatView = (props) => {
          setMessage('');
       }
    }, [data]);
-
+   // 211 219 220
    const _renderItem = ({ item }) => {
       return (
-         <View style={{ width: '100%', marginBottom: 5 }}>
-            <Text>{item.message}</Text>
+         <View
+            style={{
+               width: '84%',
+               marginBottom: 5,
+               alignSelf: item.sender ? 'flex-end' : 'flex-start',
+               backgroundColor: item.sender ? 'rgb(30,87,87)' : 'rgb(35,40,43)',
+               padding: 8,
+               borderRadius: 12,
+               marginRight: item.sender ? 8 : null,
+               marginLeft: item.sender ? null : 8
+            }}>
+            <Text style={{ color: 'rgb(211,219,220)' }}>{item.message}</Text>
          </View>
       );
    };
@@ -70,10 +81,9 @@ const ChatView = (props) => {
             }}
             source={require('../../../assets/img/whatsapp_background.png')}>
             <KeyboardAvoidingView
-               style={{flex:1}}
-               behavior={Platform.OS === 'ios' ? 'padding' : 'height' }
-               keyboardVerticalOffset={100}
-            >
+               style={{ flex: 1 }}
+               behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+               keyboardVerticalOffset={100}>
                <FlatList
                   style={{ flex: 1 }}
                   inverted={true}
@@ -100,15 +110,14 @@ const ChatView = (props) => {
                   <Pressable
                      style={{
                         flex: 0,
-                        width: 80,
                         borderRadius: 4,
                         marginRight: '2%',
-                        backgroundColor: 'orange',
+                        paddingHorizontal: '4%',
                         justifyContent: 'center',
                         alignItems: 'center'
                      }}
                      onPress={() => setData((prev) => [{ message: message, sender: true }, ...prev])}>
-                     <Text>Gönder</Text>
+                     <SendIcon height={28} width={28} />
                   </Pressable>
                </View>
             </KeyboardAvoidingView>
