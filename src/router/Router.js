@@ -7,16 +7,51 @@ import Chats from '../screens/Chats/Chats';
 import Status from '../screens/Status/Status';
 import Calls from '../screens/Calls/Calls';
 import ChatView from '../screens/Chats/ChatView';
+import ChatsIcon from '../resources/icons/ChatsIcon';
+import StatusIcon from '../resources/icons/StatusIcon';
+import CallsIcon from '../resources/icons/CallsIcon';
 
 const Tab = createBottomTabNavigator();
 const RootStack = createStackNavigator();
 
 const TabNavigator = () => {
    return (
-      <Tab.Navigator initialRouteName={'Chats'}>
-         <Tab.Screen name={'Chats'} component={Chats} />
-         <Tab.Screen name={'Status'} component={Status} />
-         <Tab.Screen name={'Calls'} component={Calls} />
+      <Tab.Navigator
+         initialRouteName={'Chats'}
+         tabBarOptions={{
+            activeTintColor: 'rgb(15,94,85)',
+            inactiveTintColor: 'gray'
+         }}>
+         <Tab.Screen
+            name={'Chats'}
+            component={Chats}
+            options={{
+               title: 'Sohbetler',
+               tabBarIcon: ({ focused, size }) => (
+                  <ChatsIcon width={size} height={size} color={focused ? 'rgb(15,94,85)' : 'gray'} />
+               )
+            }}
+         />
+         <Tab.Screen
+            name={'Status'}
+            component={Status}
+            options={{
+               title: 'Durum',
+               tabBarIcon: ({ focused, size }) => (
+                  <StatusIcon width={size} height={size} color={focused ? 'rgb(15,94,85)' : 'gray'} />
+               )
+            }}
+         />
+         <Tab.Screen
+            name={'Calls'}
+            component={Calls}
+            options={{
+               title: 'Aramalar',
+               tabBarIcon: ({ focused, size }) => (
+                  <CallsIcon width={size} height={size} color={focused ? 'rgb(15,94,85)' : 'gray'} />
+               )
+            }}
+         />
       </Tab.Navigator>
    );
 };
@@ -33,7 +68,7 @@ const getRootScreenOptions = {
    headerTintColor: '#FFFFFF'
 };
 
-const Router = (props) => {
+const Router = () => {
    return (
       <NavigationContainer ref={navigationRef}>
          <RootStack.Navigator screenOptions={getRootScreenOptions}>
