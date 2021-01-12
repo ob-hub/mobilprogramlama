@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, ImageBackground, Pressable, SafeAreaView, Text, TextInput, View } from 'react-native';
+import {
+   Dimensions,
+   FlatList,
+   ImageBackground,
+   KeyboardAvoidingView,
+   Pressable,
+   SafeAreaView,
+   Text,
+   TextInput,
+   View
+} from 'react-native';
 import _ from 'lodash';
 import faker from 'faker';
 
@@ -7,7 +17,7 @@ faker.locale = 'tr';
 
 const { width, height } = Dimensions.get('window');
 
-const firstRender = true
+const firstRender = true;
 const ChatView = (props) => {
    const [data, setData] = useState([]);
    const [message, setMessage] = useState('');
@@ -36,11 +46,11 @@ const ChatView = (props) => {
    }, []);
 
    useEffect(() => {
-      console.log(message.length)
+      console.log(message.length);
       if (message.length > 0) {
-         setMessage("")
+         setMessage('');
       }
-   }, [data])
+   }, [data]);
 
    const _renderItem = ({ item }) => {
       return (
@@ -59,43 +69,49 @@ const ChatView = (props) => {
                height: height
             }}
             source={require('../../../assets/img/whatsapp_background.png')}>
-            <FlatList
-               style={{ flex: 1 }}
-               inverted={true}
-               keyExtractor={(item, index) => index}
-               data={data.reverse()}
-               renderItem={_renderItem}
-            />
-            <View style={{ flexDirection: 'row' }}>
-               <TextInput
-                  style={{
-                     flex: 1,
-                     backgroundColor: 'white',
-                     height: 40,
-                     marginHorizontal: '2%',
-                     marginTop: 10,
-                     borderRadius: 20,
-                     paddingLeft: 14,
-                     fontSize: 18
-                  }}
-                  placeholder={'Bir mesaj yazın'}
-                  value={message}
-                  onChangeText={(val) => setMessage(val)}
+            <KeyboardAvoidingView
+               style={{flex:1}}
+               behavior={Platform.OS === 'ios' ? 'padding' : 'height' }
+               keyboardVerticalOffset={100}
+            >
+               <FlatList
+                  style={{ flex: 1 }}
+                  inverted={true}
+                  keyExtractor={(item, index) => index}
+                  data={data.reverse()}
+                  renderItem={_renderItem}
                />
-               <Pressable
-                  style={{
-                     flex: 0,
-                     width: 80,
-                     borderRadius: 4,
-                     marginRight: '2%',
-                     backgroundColor: 'orange',
-                     justifyContent: 'center',
-                     alignItems: 'center'
-                  }}
-                  onPress={() => setData((prev) => [{ message: message, sender: true }, ...prev])}>
-                  <Text>Gönder</Text>
-               </Pressable>
-            </View>
+               <View style={{ flexDirection: 'row' }}>
+                  <TextInput
+                     style={{
+                        flex: 1,
+                        backgroundColor: 'white',
+                        height: 40,
+                        marginHorizontal: '2%',
+                        marginTop: 10,
+                        borderRadius: 20,
+                        paddingLeft: 14,
+                        fontSize: 18
+                     }}
+                     placeholder={'Bir mesaj yazın'}
+                     value={message}
+                     onChangeText={(val) => setMessage(val)}
+                  />
+                  <Pressable
+                     style={{
+                        flex: 0,
+                        width: 80,
+                        borderRadius: 4,
+                        marginRight: '2%',
+                        backgroundColor: 'orange',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                     }}
+                     onPress={() => setData((prev) => [{ message: message, sender: true }, ...prev])}>
+                     <Text>Gönder</Text>
+                  </Pressable>
+               </View>
+            </KeyboardAvoidingView>
          </ImageBackground>
       </SafeAreaView>
    );
